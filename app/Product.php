@@ -16,6 +16,7 @@ class Product implements ProductInterface
   public function setId($id)
   {
     $this->id = $id;
+    return $this;
   }
 
   public function getName()
@@ -26,6 +27,7 @@ class Product implements ProductInterface
   public function setName($name)
   {
     $this->name = $name;
+    return $this;
   }
 
   public function getDescription()
@@ -36,5 +38,6 @@ class Product implements ProductInterface
   public function setDescription($description)
   {
     $this->description = $description;
+    return $this;
   }
 }

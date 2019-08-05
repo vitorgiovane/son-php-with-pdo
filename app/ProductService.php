@@ -23,7 +23,14 @@ class ProductService
   }
 
   public function store()
-  { }
+  {
+    $query = "INSERT INTO products (name, description) VALUES (:name, :description)";
+    $statement = $this->db->prepare($query);
+    $statement->bindValue(":name", $this->product->getName());
+    $statement->bindValue(":description", $this->product->getDescription());
+    $statement->execute();
+    return $this->db->lastInsertId();
+  }
 
   public function update()
   { }
