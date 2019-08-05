@@ -9,4 +9,4 @@ $Product->setId(1);
 
 $product = new ProductService($db, $Product);
 
-echo $product->destroy(4);
+print_r($product->show(2));

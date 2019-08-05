@@ -32,6 +32,16 @@ class ProductService
     return $this->db->lastInsertId();
   }
 
+  public function show($id)
+  {
+    $query = "SELECT * FROM products WHERE id = :id";
+    $statement = $this->db->prepare($query);
+    $statement->bindValue(":id", $id);
+    $statement->execute();
+    $product = $statement->fetch(PDO::FETCH_OBJ);
+    return $product;
+  }
+
   public function update()
   {
     $query = "UPDATE products SET name = :name, description = :description WHERE id = :id;";
