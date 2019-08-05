@@ -33,7 +33,15 @@ class ProductService
   }
 
   public function update()
-  { }
+  {
+    $query = "UPDATE products SET name = :name, description = :description WHERE id = :id;";
+    $statement = $this->db->prepare($query);
+    $statement->bindValue(":name", $this->product->getName());
+    $statement->bindValue(":description", $this->product->getDescription());
+    $statement->bindValue(":id", $this->product->getId());
+    $executionStatus = $statement->execute();
+    return $executionStatus;
+  }
 
   public function destroy()
   { }
