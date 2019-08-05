@@ -3,9 +3,9 @@
 interface ProductInterface
 {
   public function getId();
-  public function setId();
+  public function setId($id);
   public function getName();
-  public function setName();
+  public function setName($name);
   public function getDescription();
-  public function setDescription();
+  public function setDescription($description);
 }

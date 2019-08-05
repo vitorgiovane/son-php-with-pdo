@@ -23,7 +23,7 @@ class Connection implements ConnectionInterface
   {
     try {
       $dataSourceName = "$this->prefix:host=$this->host;port=$this->port;dbname=$this->database;";
-      $connection = new \PDO($dataSourceName, $this->username, $this->password);
+      $connection = new \PDO($dataSourceName, $this->user, $this->password);
       return $connection;
     } catch (\PDOException $exception) {
       echo "<strong>Exception code:</strong> {$exception->getCode()}<br>";

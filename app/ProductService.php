@@ -1,7 +1,7 @@
 <?php
 
-require_once "ConnectionInteface.php";
-require_once "ProductInteface.php";
+require_once "ConnectionInterface.php";
+require_once "ProductInterface.php";
 
 class ProductService
 {
@@ -15,7 +15,12 @@ class ProductService
   }
 
   public function index()
-  { }
+  {
+    $query = "SELECT * FROM products;";
+    $statement = $this->db->prepare($query);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_OBJ);
+  }
 
   public function store()
   { }
