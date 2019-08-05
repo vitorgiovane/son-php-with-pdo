@@ -3,7 +3,7 @@
 require_once("connection.php");
 
 $allProductsQuery = "select * from products;";
-$singularProductQuery = "select * from products where id = 2;";
+$singularProductQuery = "select * from products where id = {$_GET['id']};";
 
 $allProductsStatement = $connection->query($allProductsQuery);
 $singularProductStatement = $connection->query($singularProductQuery);
