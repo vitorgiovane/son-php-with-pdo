@@ -19,6 +19,10 @@ try {
   $userName = getenv("DB_USERNAME");
   $password = getenv("DB_PASSWORD");
   $connection = new \PDO($dataSourceName, $userName, $password);
+
+  $insertQuery = "INSERT INTO products (name, description) VALUES('Mustang GT','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula consectetur felis.');";
+  $numberOfAffectedLines = $connection->exec($insertQuery);
+  var_dump($numberOfAffectedLines);
 } catch (\PDOException $exception) {
   echo "<strong>Exception code:</strong> {$exception->getCode()}<br>";
   echo "<strong>Message:</strong> {$exception->getMessage()}";
