@@ -43,6 +43,12 @@ class ProductService
     return $executionStatus;
   }
 
-  public function destroy()
-  { }
+  public function destroy(int $id)
+  {
+    $query = "DELETE FROM products WHERE id = :id;";
+    $statement = $this->db->prepare($query);
+    $statement->bindValue(":id", $id);
+    $executionStatus = $statement->execute();
+    return $executionStatus;
+  }
 }
