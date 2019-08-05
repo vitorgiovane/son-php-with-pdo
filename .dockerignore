@@ -1,0 +1,12 @@
+.cache
+.docker
+docker-compose.yml
+.env
+.env.example
+.env.ready
+composer.json
+composer.lock
+.git
+.gitignore
+.history
+.vscode

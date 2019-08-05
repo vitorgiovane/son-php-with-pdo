@@ -1,0 +1,14 @@
+{
+    "name": "vitorgiovane/pdo",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vitor Giovane",
+            "email": "vitorgpalves@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^3.4"
+    }
+}

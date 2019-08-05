@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  php:
+    container_name: "${DOCKER_CONTAINER_PREFIX}-php"
+    ports:
+      - ${PHP_PORT}:80
+    build:
+      context: ./docker/php
+    volumes:
+      - ./:/atmosphere
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+    restart: "always"
+  mysql:
+    container_name: "${DOCKER_CONTAINER_PREFIX}-mysql"
+    build:
+      context: ./docker/mysql
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    restart: "always"
+    ports:
+      - "${DB_EXTERNAL_PORT}:${DB_PORT}"
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=${DB_ALLOW_EMPTY_PASSWORD}
