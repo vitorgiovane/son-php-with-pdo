@@ -1,19 +1,21 @@
 <?php
 
-require_once("connection.php");
+require_once "Connection.php";
 
-$allProductsQuery = "select * from products;";
-$singularProductQuery = "select * from products where id = :id;";
-
-$allProductsStatement = $connection->query($allProductsQuery);
-$singularProductStatement = $connection->prepare($singularProductQuery);
-$singularProductStatement->bindValue(":id", $_GET['id']);
-$singularProductStatement->execute();
-
-$singularProduct = $singularProductStatement->fetch(PDO::FETCH_OBJ);
-echo $singularProduct->name . "<br>";
-echo $singularProduct->description;
-echo "<br>=======================================<br>";
-foreach ($allProductsStatement as $product) {
-  echo $product["name"] . "<br>";
+if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
+  require_once dirname(__DIR__) . '/vendor/autoload.php';
+  $dotenv = Dotenv\Dotenv::create(dirname(__DIR__));
+  $dotenv->load();
+} else {
+  echo "<h2>File <strong>/vendor/autoload.php</strong> not found!</h2>
+  <p>Run the <strong>composer install</strong> command on a terminal.</p>";
+  die;
 }
+
+$prefix = getenv("DB_PREFIX");
+$host = getenv("DB_HOST");
+$port = getenv("DB_PORT");
+$database = getenv("DB_DATABASE");
+$user = getenv("DB_USER");
+$password = getenv("DB_PASSWORD");
+$connection = new Connection($prefix, $host, $port, $database, $user, $password);
