@@ -1,6 +1,8 @@
 <?php
 
 require_once "Connection.php";
+require_once "Product.php";
+require_once "ProductService.php";
 
 if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
   require_once dirname(__DIR__) . '/vendor/autoload.php';
